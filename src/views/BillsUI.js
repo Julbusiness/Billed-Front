@@ -20,11 +20,24 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
+    console.log(data)
+    //! debug de bills
+    if (data && data.length) {
+
+      data.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.date) - new Date(a.date);
+      });
+      console.log(data)   
+    }
+    //! fin de debug
   return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+
 }
 
 export default ({ data: bills, loading, error }) => {
-  
+
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

@@ -5,6 +5,9 @@ import BigBilledIcon from '../assets/svg/big_billed.js'
 import { filteredBills } from '../containers/Dashboard.js'
 import ArrowIcon from '../assets/svg/arrow.js'
 
+console.log('je suis dans DashboardUI.js de views')
+
+
 export default ({ data, loading, error }) => {
 
   if (loading) {

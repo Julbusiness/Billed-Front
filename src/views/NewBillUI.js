@@ -1,5 +1,8 @@
 import VerticalLayout from './VerticalLayout.js'
 
+console.log('je suis dans NewBillUI.js de views')
+
+
 export default () => {
 
   return (`
@@ -28,6 +31,7 @@ export default () => {
                   <div class="col-half">
                     <label for="expense-name" class="bold-label">Nom de la dépense</label>
                     <input type="text" class="form-control blue-border" data-testid="expense-name" placeholder="Vol Paris Londres" />
+                    <div class="hide" id="error-expensename">Vous devez entrer un titre pour la dépense d'au moins 5 lettres.</div>
                   </div>
                   <div class="col-half">
                     <label for="datepicker" class="bold-label">Date</label>
@@ -56,6 +60,7 @@ export default () => {
                   <div class="col-half">
                     <label for="file" class="bold-label">Justificatif</label>
                     <input required type="file" class="form-control blue-border" data-testid="file" />
+                    <div class="hide" id="error-filetype">Le justificatif doit être au format "jpeg", "jpg" ou "png".</div>
                   </div>
                 </div>
             </div>

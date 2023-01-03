@@ -2,6 +2,9 @@ import WindowIcon from "../assets/svg/window.js"
 import MailIcon from "../assets/svg/mail.js"
 import DisconnectIcon from "../assets/svg/disconnect.js"
 
+console.log('je suis dans VerticalLayout.js de views')
+
+
 export default (height) => {
     let user;
     user = JSON.parse(localStorage.getItem('user'))

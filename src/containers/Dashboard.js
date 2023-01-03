@@ -5,7 +5,12 @@ import { ROUTES_PATH } from '../constants/routes.js'
 import USERS_TEST from '../constants/usersTest.js'
 import Logout from "./Logout.js"
 
+console.log('je suis dans dashboard.js du containers') //!
+
+
 export const filteredBills = (data, status) => {
+  console.log('Je suis dans la fonction filteredBills dans le fichier Dashboard.js') //!
+
   return (data && data.length) ?
     data.filter(bill => {
       let selectCondition
@@ -28,6 +33,9 @@ export const filteredBills = (data, status) => {
 }
 
 export const card = (bill) => {
+
+  console.log('Je suis dans la fonction Card dans le fichier Dashboard.js') //!
+
   const firstAndLastNames = bill.email.split('@')[0]
   const firstName = firstAndLastNames.includes('.') ?
     firstAndLastNames.split('.')[0] : ''
@@ -53,10 +61,14 @@ export const card = (bill) => {
 }
 
 export const cards = (bills) => {
+  console.log('Je suis dans la fonction cards dans le fichier Dashboard.js') //!
+
   return bills && bills.length ? bills.map(bill => card(bill)).join("") : ""
 }
 
 export const getStatus = (index) => {
+  console.log('Je suis dans la fonction getStatus dans le fichier Dashboard.js') //!
+
   switch (index) {
     case 1:
       return "pending"
@@ -79,6 +91,8 @@ export default class {
   }
 
   handleClickIconEye = () => {
+    console.log('Je suis dans la fonction handleClickIconEye dans le fichier Dashboard.js') //!
+
     const billUrl = $('#icon-eye-d').attr("data-bill-url")
     const imgWidth = Math.floor($('#modaleFileAdmin1').width() * 0.8)
     $('#modaleFileAdmin1').find(".modal-body").html(`<div style='text-align: center;'><img width=${imgWidth} src=${billUrl} alt="Bill"/></div>`)
@@ -86,6 +100,8 @@ export default class {
   }
 
   handleEditTicket(e, bill, bills) {
+    console.log('Je suis dans la fonction handleEditTicket dans le fichier Dashboard.js') //!
+
     if (this.counter === undefined || this.id !== bill.id) this.counter = 0
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     if (this.counter % 2 === 0) {
@@ -111,6 +127,8 @@ export default class {
   }
 
   handleAcceptSubmit = (e, bill) => {
+    console.log('Je suis dans la fonction handleAcceptSubmit dans le fichier Dashboard.js') //!
+
     const newBill = {
       ...bill,
       status: 'accepted',
@@ -121,6 +139,8 @@ export default class {
   }
 
   handleRefuseSubmit = (e, bill) => {
+    console.log('Je suis dans la fonction handleRefuseSubmit dans le fichier Dashboard.js') //!
+
     const newBill = {
       ...bill,
       status: 'refused',
@@ -131,6 +151,8 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
+    console.log('Je suis dans la fonction handleShowTickets dans le fichier Dashboard.js') //!
+
     if (this.counter === undefined || this.index !== index) this.counter = 0
     if (this.index === undefined || this.index !== index) this.index = index
     if (this.counter % 2 === 0) {
@@ -154,6 +176,8 @@ export default class {
   }
 
   getBillsAllUsers = () => {
+    console.log('Je suis dans la fonction getBillsAllUsers dans le fichier Dashboard.js') //!
+
     if (this.store) {
       return this.store
       .bills()
@@ -177,6 +201,8 @@ export default class {
   // not need to cover this function by tests
   /* istanbul ignore next */
   updateBill = (bill) => {
+    console.log('Je suis dans la fonction updateBill dans le fichier Dashboard.js') //!
+
     if (this.store) {
     return this.store
       .bills()

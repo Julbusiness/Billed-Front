@@ -1,5 +1,8 @@
 import { ROUTES_PATH } from '../constants/routes.js'
 
+console.log('je suis dans logout.js du containers')
+
+
 export default class Logout {
   constructor({ document, onNavigate, localStorage }) {
     this.document = document

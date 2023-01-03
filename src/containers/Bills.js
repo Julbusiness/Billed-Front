@@ -2,6 +2,8 @@ import { ROUTES_PATH } from '../constants/routes.js'
 import { formatDate, formatStatus } from "../app/format.js"
 import Logout from "./Logout.js"
 
+console.log('je suis dans bills.js du containers') //!
+
 export default class {
   constructor({ document, onNavigate, store, localStorage }) {
     this.document = document
@@ -17,17 +19,30 @@ export default class {
   }
 
   handleClickNewBill = () => {
+
+    console.log('Je suis dans la fonction handleClickNewBill dans le fichier Bills.js') //!
+
     this.onNavigate(ROUTES_PATH['NewBill'])
   }
 
   handleClickIconEye = (icon) => {
-    const billUrl = icon.getAttribute("data-bill-url")
+
+    console.log('Je suis dans la fonction handleClickIconEye dans le fichier Bills.js') //!
+
+    const billUrl = icon.getAttribute("data-bill-url") //! le billUrl n'est pas bon car au lieu de passer l'adresse de l'image il passe null
+
+    console.log(billUrl) //!
+    console.log(icon) //!
+    
     const imgWidth = Math.floor($('#modaleFile').width() * 0.5)
     $('#modaleFile').find(".modal-body").html(`<div style='text-align: center;' class="bill-proof-container"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`)
     $('#modaleFile').modal('show')
   }
 
   getBills = () => {
+
+    console.log('Je suis dans la fonction getBills dans le fichier Bills.js') //!
+
     if (this.store) {
       return this.store
       .bills()
@@ -35,13 +50,13 @@ export default class {
       .then(snapshot => {
   
         const bills = snapshot
-          .map(doc => {
-            try {
-              return {
-                ...doc,
-                date: formatDate(doc.date),
-                status: formatStatus(doc.status)
-              }
+        .map(doc => {
+          try {
+            return {
+              ...doc,
+              date: formatDate(doc.date),
+              status: formatStatus(doc.status)
+            }
             } catch(e) {
               // if for some reason, corrupted data was introduced, we manage here failing formatDate function
               // log the error and return unformatted date in that case
@@ -54,7 +69,6 @@ export default class {
             }
           })
           console.log('length', bills.length)
-          // console.log(bills.sort())
         return bills
       })
     }

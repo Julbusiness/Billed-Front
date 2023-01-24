@@ -1,8 +1,5 @@
 import VerticalLayout from './VerticalLayout.js'
 
-console.log('je suis dans ErrorPage.js de views')
-
-
 export default (error) => {
   return (`
     <div class='layout'>

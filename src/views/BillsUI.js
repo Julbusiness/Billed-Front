@@ -4,12 +4,7 @@ import LoadingPage from "./LoadingPage.js"
 
 import Actions from './Actions.js'
 
-console.log('je suis dans BillsUI.js de views')
-
-
 const row = (bill) => {
-  console.log('je suis dans le fonction row dans BillUI.js') //!
-
   return (`
     <tr>
       <td>${bill.type}</td>
@@ -25,27 +20,15 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  console.log('je suis dans le fonction rows dans BillUI.js') //!
-
 
     //! debug de bills
-    if (data && data.length) {
-
-      data.sort(function(a,b){
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.date) - new Date(a.date);
-      }); 
-    }
+    let dataSorted = []
+    return (data && data.length) ? data.sort((a, b) => ((a.date < b.date) ? 1 : -1)).map(bill => row(bill)).join("") : ""
     //! fin de debug
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
 
 }
 
 export default ({ data: bills, loading, error }) => {
-
-  console.log('je suis dans le fonction modal dans BillUI.js') //!
-  
   
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

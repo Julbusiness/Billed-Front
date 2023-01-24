@@ -1,8 +1,5 @@
 import VerticalLayout from './VerticalLayout.js'
 
-console.log('je suis dans LoadingPage.js de views')
-
-
 export default () => {
 
   return (`

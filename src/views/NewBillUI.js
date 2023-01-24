@@ -1,8 +1,5 @@
 import VerticalLayout from './VerticalLayout.js'
 
-console.log('je suis dans NewBillUI.js de views')
-
-
 export default () => {
 
   return (`

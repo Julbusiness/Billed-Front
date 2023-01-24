@@ -1,5 +1,3 @@
-console.log('je suis dans LoginUI.js de views')
-
 export default () => {
 
   return(`

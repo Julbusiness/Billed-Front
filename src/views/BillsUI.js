@@ -19,13 +19,18 @@ const row = (bill) => {
     `)
   }
 
-const rows = (data) => {
+  const rows = (data) => {
+//! correction pour liste bills par ordre de date décroissante
+let dataSorted = [];
+if (data){
+    dataSorted = data.sort(function(a, b) {
+        let dateA = new Date(a.date), dateB = new Date(b.date);
+        return dateB - dateA;
+    });
+}
+//!
 
-    //! debug de bills
-    let dataSorted = []
-    return (data && data.length) ? data.sort((a, b) => ((a.date < b.date) ? 1 : -1)).map(bill => row(bill)).join("") : ""
-    //! fin de debug
-
+  return (data && data.length) ? dataSorted.map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {

@@ -13,11 +13,12 @@ import Bills from "../containers/Bills";
 import router from "../app/Router.js";
 
 /* -------------------------------------------------------------------------- */
-jest.mock("../app/Store", () => mockStore); //!
+jest.mock("../app/Store", () => mockStore);
 /* -------------------------------------------------------------------------- */
 
 describe("Given I am connected as an employee", () => {
 	describe("When I am on Bills Page", () => {
+		// vérifie si l'icone est bien surligné
 		test("Then bill icon in vertical layout should be highlighted", async () => {
 			Object.defineProperty(window, "localStorage", {
 				value: localStorageMock,
@@ -31,13 +32,14 @@ describe("Given I am connected as an employee", () => {
 			window.onNavigate(ROUTES_PATH.Bills);
 			await waitFor(() => screen.getByTestId("icon-window"));
 			const windowIcon = screen.getByTestId("icon-window");
-			//to-do write expect expression
-			//! vérifie si icon contient bien la class active
+
+			//vérifie si windowIcon contient bien la class active
 			expect(windowIcon).toBeTruthy();
 			expect(windowIcon.classList.contains("active-icon")).toBeTruthy();
-			//!
+			//
 		});
 
+		// vérifie le tri par date
 		test("Then bills should be ordered from earliest to latest", () => {
 			document.body.innerHTML = BillsUI({ data: bills });
 			const dates = screen
@@ -52,7 +54,7 @@ describe("Given I am connected as an employee", () => {
 	});
 
 	describe("When I click on Nouvelle note de frais", () => {
-		//! Vérifie si le formulaire de création de bills apparait
+		// Vérifie si le formulaire de création de bills apparait
 		test("Then the form to create a new bill appear", async () => {
 			const onNavigate = (pathname) => {
 				document.body.innerHTML = ROUTES({ pathname });
@@ -83,9 +85,8 @@ describe("Given I am connected as an employee", () => {
 			expect(screen.getByTestId("form-new-bill")).toBeTruthy();
 		});
 	});
-	//!
 
-	//! test de get Bills
+	// test de get Bills
 	describe("When I navigate to Bills UI", () => {
 		test("fetches bills from mock API GET", async () => {
 			const onNavigate = (pathname) => {
@@ -110,9 +111,8 @@ describe("Given I am connected as an employee", () => {
 			await waitFor(() => screen.getByText("Mes notes de frais"));
 			expect(screen.getByText("Mes notes de frais")).toBeTruthy();
 		});
-		//!
 
-		//! test erreurs
+		// test erreurs
 		describe("When an error occurs on API", () => {
 			beforeEach(() => {
 				jest.spyOn(mockStore, "bills");
@@ -131,7 +131,8 @@ describe("Given I am connected as an employee", () => {
 				document.body.appendChild(root);
 				router();
 			});
-			//! Vérifie si l'erreur 404 s'affiche bien
+
+			// Vérifie si l'erreur 404 s'affiche bien
 			test("Then fetches bills from an API and fails with 404 message error", async () => {
 				mockStore.bills.mockImplementationOnce(() => {
 					return {
@@ -146,7 +147,7 @@ describe("Given I am connected as an employee", () => {
 				expect(message).toBeTruthy();
 			});
 
-			//! Vérifie si l'erreur 500 s'affiche bien
+			// Vérifie si l'erreur 500 s'affiche bien
 			test("Then fetches messages from an API and fails with 500 message error", async () => {
 				mockStore.bills.mockImplementationOnce(() => {
 					return {
@@ -161,13 +162,8 @@ describe("Given I am connected as an employee", () => {
 				expect(message).toBeTruthy();
 			});
 		});
-		//!
 
-		//! test de click iconEye
-
-		/* -------------------------------------------------------------------------- */
-		/* -------------------------------------------------------------------------- */
-		//! Vérifie si la modale du justificatif apparait
+		// Vérifie si la modale du justificatif apparait
 		describe("When I click on the eye of a bill", () => {
 			test("Then a modal must appear", async () => {
 				const onNavigate = (pathname) => {
@@ -203,8 +199,5 @@ describe("Given I am connected as an employee", () => {
 				expect(modaleFile).toBeTruthy();
 			});
 		});
-		/* -------------------------------------------------------------------------- */
-		/* -------------------------------------------------------------------------- */
-		//!
 	});
 });

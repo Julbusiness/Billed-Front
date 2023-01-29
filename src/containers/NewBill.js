@@ -25,7 +25,7 @@ export default class NewBill {
 		const fileFormat = fileName.substring(fileName.lastIndexOf("."));
 		const champFile = e.target;
 
-		//! test
+		//! correction du bug hunt - bills
 		/* Si le format est valide on enlève l'avertissement et on valide */
 		if (
 			fileFormat === ".jpg" ||

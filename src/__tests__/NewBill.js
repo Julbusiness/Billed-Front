@@ -10,6 +10,7 @@ import { ROUTES, ROUTES_PATH } from "../constants/routes";
 import {localStorageMock} from "../__mocks__/localStorage.js";
 import userEvent from "@testing-library/user-event"
 import router from "../app/Router.js";
+import { bills } from "../fixtures/bills.js"
 
 jest.mock("../app/store", () => mockStore)
 
@@ -42,6 +43,7 @@ describe("Given I am connected as an employee", () => {
       expect(handleSubmit).toHaveBeenCalled();
     });
 
+    // Gère le POST d'un bill
     test("Then show the new bill page", async () => {
       localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a" }));
       const root = document.createElement("div")
